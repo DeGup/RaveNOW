@@ -31,6 +31,7 @@ public class GabberController {
         var searchLong = geoData.get(1);
         var distance = modelAndView.getDistance() == 0 ? Integer.MAX_VALUE : modelAndView.getDistance();
         var distanceFiltered = raves.stream()
+                .filter(r -> r.getLatitude() != null && r.getLongitude() != null)
                 .filter(r -> distance > distance(Double.valueOf(searchLat), Double.valueOf(searchLong), Double.valueOf(r.getLatitude()), Double.valueOf(r.getLongitude())))
                 .toList();
 

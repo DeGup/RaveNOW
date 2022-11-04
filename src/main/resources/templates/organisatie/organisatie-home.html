@@ -1,54 +1,91 @@
-<!DOCTYPE html>
-<html lang="en">
-<head th:insert="fragments/head :: head"></head>
-<body>
-<a th:insert="fragments/head :: navbar"></a>
-<form th:action="@{/organisatie/create-rave}" method="post" th:object="${rave}">
-    <span><input id="naam" class="blue" size="12" placeholder="Naam" required type="text" th:field="*{name}"/></span>
-    <input id="datum" placeholder="datum" required type="datetime-local" th:field="*{datum}"/>
-    <br>
-    <input id="omschrijving" class="blue" size="12" placeholder="omschrijving" required type="text" th:field="*{omschrijving}"/>
-    <br>
-    <input id="tags" placeholder="Tags" class="blue" required type="text" th:field="*{tags}"/>
-    <input id="latitude" required type="hidden" th:field="*{latitude}"/>
-    <input id="longitude" required type="hidden" th:field="*{longitude}"/>
-    <input type="submit" value="Opslaan" class="teletext.yellow bluebg">
-</form>
+<!--<!DOCTYPE html>-->
+<!--<html lang="en">-->
+<!--<head th:insert="fragments/head :: head"></head>-->
+<!--<body>-->
+<!--<a th:insert="fragments/head :: navbar"></a>-->
+<!--<form th:action="@{/organisatie/create-rave}" method="post" th:object="${rave}">-->
+<!--    <span><input id="naam" class="blue" size="12" placeholder="Naam" required type="text" th:field="*{name}"/></span>-->
+<!--    <input id="datum" placeholder="datum" required type="datetime-local" th:field="*{datum}"/>-->
+<!--    <br>-->
+<!--    <input id="omschrijving" class="blue" size="12" placeholder="omschrijving" required type="text" th:field="*{omschrijving}"/>-->
+<!--    <br>-->
+<!--    <input id="tags" placeholder="Tags" class="blue" required type="text" th:field="*{tags}"/>-->
 
-<div id="map"></div>
-<br>
-<p th:insert="fragments/head :: raves"></p>
+<!--    <input type="submit" value="Opslaan" class="teletext.yellow bluebg">-->
+<!--</form>-->
+
+<!--<div id="map"></div>-->
+<!--<br>-->
+<!--</body>-->
+
+<!--</html>-->
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+<head th:insert="fragments/head :: head">
+
+<body><a name="top"> </a>
+<center>
+    <table>
+        <tr>
+            <td class="teletext">
+                <div class="teletext">&#xE2C0;P100 <span class="green">!RAVE.NOW <span id="TTcounter">100</span> <span id="TTdate">Mon  1 Jan</span></span> <span class="yellow"><span id="TTtime">00:00/00</span></span>
+&#xE2C0;<span class="yellow bluebg"> Amazing raves near you?            </span><span
+        class="white bluebg">100</span>
+&#xE2C0;<span class="yellow bluebg"> Last raves sold out completely     </span><span
+        class="white bluebg">201</span>
+&#xE2C0;
+&#xE2C0;<span class="red">&#xE2C0;&#xE2C0;&#xE2C0;&#xE2E0;&#xE2FF;&#xE2FF;&#xE2FF;&#xE2FF;&#xE2FF;&#xE2FF;&#xE2FF;&#xE2FF;&#xE2FF;&#xE2FF;&#xE2FF;&#xE2FF;&#xE2FF;&#xE2FF;&#xE2FF;&#xE2FF;&#xE2FF;&#xE2FF;&#xE2FF;&#xE2FF;&#xE2FF;&#xE2FF;&#xE2FF;&#xE2FF;&#xE2FF;&#xE2FF;&#xE2FF;&#xE2FF;&#xE2FF;&#xE2FF;&#xE2FF;&#xE2FF;&#xE2FF;&#xE2DF;&#xE2C1;</span>
+&#xE2C0;<span class="magenta">&#xE2C0;&#xE2C0;&#xE2C0;&#xE2FA;&#xE2FF;&#xE2C5;&#xE2C0;&#xE2C0;&#xE2C0;&#xE2C0;&#xE2C0;&#xE2C0;&#xE2C0;&#xE2C0;&#xE2C0;&#xE2C0;&#xE2C0;&#xE2C0;&#xE2C0;&#xE2C0;&#xE2C0;&#xE2C0;&#xE2C0;&#xE2C0;&#xE2C0;&#xE2C0;&#xE2C0;&#xE2C0;&#xE2C0;&#xE2C0;&#xE2C0;&#xE2C0;&#xE2C0;&#xE2E0;&#xE2FE;&#xE2FF;&#xE2C7;&#xE2C0;&#xE2C0;</span>
+&#xE2C0;<span class="magenta">&#xE2C0;&#xE2C0;&#xE2E8;&#xE2FF;&#xE2D7;&#xE2E0;&#xE2FF;&#xE2FF;&#xE2FF;&#xE2C1;&#xE2E0;&#xE2FF;&#xE2FF;&#xE2FF;&#xE2FF;&#xE2C0;&#xE2C0;&#xE2E0;&#xE2FF;&#xE2FF;&#xE2C1;&#xE2E0;&#xE2FF;&#xE2FF;&#xE2FF;&#xE2FF;&#xE2C0;&#xE2C2;&#xE2EF;&#xE2FF;&#xE2FD;&#xE2F0;&#xE2F8;&#xE2FF;&#xE2DF;&#xE2C1;&#xE2C0;&#xE2C0;&#xE2C0;</span>
+&#xE2C0;<span class="red">&#xE2C0;&#xE2C0;&#xE2FE;&#xE2FF;&#xE2C1;&#xE2C0;&#xE2E0;&#xE2FF;&#xE2D7;&#xE2C0;&#xE2FA;&#xE2FF;&#xE2C1;&#xE2EA;&#xE2FF;&#xE2C0;&#xE2C0;&#xE2FA;&#xE2FF;&#xE2C5;&#xE2C0;&#xE2FA;&#xE2FF;&#xE2C1;&#xE2EA;&#xE2FF;&#xE2C0;&#xE2C0;&#xE2C0;&#xE2CB;&#xE2FF;&#xE2FF;&#xE2FF;&#xE2C7;&#xE2C0;&#xE2C0;&#xE2C0;&#xE2C0;&#xE2C0;</span>
+&#xE2C0;<span class="magenta">&#xE2C0;&#xE2E8;&#xE2FF;&#xE2F7;&#xE2F0;&#xE2F0;&#xE2FE;&#xE2FF;&#xE2C5;&#xE2E0;&#xE2FF;&#xE2DF;&#xE2CF;&#xE2FF;&#xE2FF;&#xE2C0;&#xE2E0;&#xE2FF;&#xE2DF;&#xE2C0;&#xE2E0;&#xE2FF;&#xE2DF;&#xE2CF;&#xE2FF;&#xE2FF;&#xE2C0;&#xE2C0;&#xE2C0;&#xE2F8;&#xE2FF;&#xE2FF;&#xE2FF;&#xE2FD;&#xE2D0;&#xE2C0;&#xE2C0;&#xE2C0;&#xE2C0;</span>
+&#xE2C0;<span class="magenta">&#xE2C0;&#xE2CF;&#xE2CF;&#xE2CF;&#xE2CF;&#xE2CF;&#xE2CF;&#xE2CF;&#xE2C0;&#xE2CE;&#xE2CF;&#xE2C0;&#xE2C0;&#xE2CF;&#xE2CF;&#xE2C0;&#xE2FA;&#xE2FF;&#xE2C5;&#xE2C0;&#xE2CE;&#xE2CF;&#xE2C0;&#xE2C0;&#xE2CF;&#xE2CF;&#xE2C0;&#xE2E0;&#xE2FE;&#xE2FF;&#xE2C7;&#xE2C0;&#xE2CB;&#xE2CF;&#xE2CF;&#xE2C4;&#xE2C0;&#xE2C0;&#xE2C0;</span>
+&#xE2C0;<span class="magenta">&#xE2C0;&#xE2C0;&#xE2C0;&#xE2C0;&#xE2C0;&#xE2C0;&#xE2C0;&#xE2C0;&#xE2C0;&#xE2C0;&#xE2C0;&#xE2C0;&#xE2C0;&#xE2C0;&#xE2C0;&#xE2E0;&#xE2FF;&#xE2FF;&#xE2F0;&#xE2F0;&#xE2F0;&#xE2F0;&#xE2F0;&#xE2F0;&#xE2F0;&#xE2F0;&#xE2F8;&#xE2FF;&#xE2DF;&#xE2C1;&#xE2C0;&#xE2C0;&#xE2C0;&#xE2C0;&#xE2C0;&#xE2C0;&#xE2C0;&#xE2C0;&#xE2C0;</span>
+&#xE2C0;<span class="magenta">&#xE2C0;&#xE2C0;&#xE2C0;&#xE2C0;&#xE2C0;&#xE2C0;&#xE2C0;&#xE2C0;&#xE2C0;&#xE2C0;&#xE2C0;&#xE2C0;&#xE2C0;&#xE2C0;&#xE2C0;&#xE2C2;&#xE2C3;&#xE2C3;&#xE2C3;&#xE2C3;&#xE2C3;&#xE2C3;&#xE2C3;&#xE2C3;&#xE2C3;&#xE2C3;&#xE2C3;&#xE2C3;&#xE2C0;&#xE2C0;&#xE2C0;&#xE2C0;&#xE2C0;&#xE2C0;&#xE2C0;&#xE2C0;&#xE2C0;&#xE2C0;&#xE2C0;</span>
+&#xE2C0;
+&#xE2C0; <span class="red">Where's The Rave At Now?</span>
+&#xE2C0;
+&#xE2C0;
+&#xE2C0; <span class="yellow">You could try to <span class="flashing">Create it!</span>&#xE2C0;<form th:action="@{/organisatie/create-rave}" method="post" th:object="${rave}">
+       <label for="name" class="blue">Name</label> <input size=12 class="blue" type="text" id="name" name="name" placeholder="_____________" th:field="*{name}"/>
+       <label for="description" class="blue">Description</label> <input size=12 class="blue" type="text" id="description" name="description" placeholder="_____________" th:field="*{omschrijving}"/><input id="latitude" required type="hidden" th:field="*{latitude}"/><input id="longitude" required type="hidden" th:field="*{longitude}"/>
+       <label for="tags" class="blue">Tags</label> <input size=12 class="blue" type="text" id="tags" name="tags" placeholder="_____________" th:field="*{tags}"/>
+       <label for="datum" class="blue">Datum</label> <input size=12 class="blue" type="datetime-local" id="datum" name="datum" th:field="*{datum}"/>
+       <input type="submit" value="Create" class="teletekst.yellow bluebg"/></form>
+&#xE2C0;<div id="map"></div>
+&#xE2C0;
+&#xE2C0;<span class="bluebg yellow ">  Teletext font by <a href="mailto:3d@galax.xyz" class="yellow">3d@galax.xyz</a> 2014   </span>
+&#xE2C0;  <a th:href="@{/}" class="red">Home</a>   <!-- -->   <a href="https://freegalaga.com/" class="green">Game On!</a>    <!-- -->  <a
+                                href="STATIC.HTM" class="yellow">Static</a>  <!-- -->   <a href="mailto:3d@galax.xyz"
+                                                                                           class="cyan">Email</a>
+</div>
+</td>
+</tr>
+</table>
+    <p th:insert="fragments/head :: raves"></p>
 </body>
 <script>
-    // Get element references
-    // Initialize locationPicker plugin
     var lp = new locationPicker('map', {
         setCurrentPosition: true, // You can omit this, defaults to true
     }, {
         zoom: 15 // You can set any google map options here, zoom defaults to 15
     });
 
-    // Listen to button onclick event
-    // confirmBtn.onclick = function () {
-    //     // Get current location and show it in HTML
-    //     const location = lp.getMarkerPosition();
-    //     const long = document.getElementById("longitude");
-    //     const lat = document.getElementById("latitude");
-    //
-    //     onClickPositionView.innerHTML = 'De gekozen locatie is ' + location.lat + ',' + location.lng;
-    //     long.value = location.lng;
-    //     lat.value = location.lat;
-    // };
-
-    google.maps.event.addListener(lp.map, 'idle', function (event) {
-        // Get current location and show it in HTML
+    function getPosition() {
         const location = lp.getMarkerPosition();
         const long = document.getElementById("longitude");
         const lat = document.getElementById("latitude");
 
-        onClickPositionView.innerHTML = 'De gekozen locatie is ' + location.lat + ',' + location.lng;
         long.value = location.lng;
         lat.value = location.lat;
+    }
+
+    window.onload = function () {
+        getPosition();
+    }
+
+    google.maps.event.addListener(lp.map, 'idle', function (event) {
+        getPosition()
     });
 </script>
 </html>

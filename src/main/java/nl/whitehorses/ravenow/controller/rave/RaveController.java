@@ -11,6 +11,7 @@ import org.springframework.web.servlet.ModelAndView;
 
 import javax.annotation.PostConstruct;
 import java.time.LocalDateTime;
+import java.util.Map;
 
 @Controller
 @RequiredArgsConstructor
@@ -34,7 +35,10 @@ public class RaveController {
     @PostMapping("/organisatie/create-rave")
     public ModelAndView createRave(@ModelAttribute("rave") Rave rave) {
         raveRepo.save(rave);
-        var raves = raveRepo.findAll();
-        return new ModelAndView("organisatie/organisatie-home", "raves", raves);
+        var model = Map.of(
+                "raves", raveRepo.findAll(),
+                "rave", new Rave()
+        );
+        return new ModelAndView("organisatie/organisatie-home", model);
     }
 }
