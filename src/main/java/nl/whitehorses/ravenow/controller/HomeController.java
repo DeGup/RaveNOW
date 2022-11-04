@@ -47,9 +47,14 @@ public class HomeController {
         return new ModelAndView("home");
     }
 
-    @GetMapping
+    @GetMapping("/error")
     public ModelAndView error() {
         return new ModelAndView("error");
+    }
+
+    @GetMapping("/static")
+    public ModelAndView staticPage() {
+        return new ModelAndView("static");
     }
 
 

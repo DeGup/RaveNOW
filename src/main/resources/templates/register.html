@@ -32,9 +32,9 @@
        <label class="blue">Role<select name="role"><option class="redbg" th:each="role : ${T(nl.whitehorses.ravenow.model.Role).values()}" th:value="${role}" th:text="${role}"></option></select></label>
        <label for="password" class="blue">Password</label> <input size=12 class="blue" type="password" id="password" name="password" placeholder="_____________"/>  <input type="submit" value="Registreer" class="teletekst.yellow bluebg"/></form>
                         &#xE2C0;
-&#xE2C0;<span class="bluebg yellow ">  Teletext font by <a href="mailto:3d@galax.xyz" class="yellow">3d@galax.xyz</a> 1982   </span>
+&#xE2C0;<span class="bluebg yellow ">  Teletext font by <a href="mailto:michel@whitehorses.nl" class="yellow">michel@whitehorses.nl</a> 1982   </span>
 &#xE2C0;  <a th:href="@{/}" class="red">Home</a>   <!-- -->   <a href="https://freegalaga.com/" class="green">Game On!</a>   <!-- -->  <a
-                                href="STATIC.HTM" class="yellow">Static</a>  <!-- -->  <a href="mailto:3d@galax.xyz"
+                                th:href="@{/static}" class="yellow">Static</a>  <!-- -->  <a href="mailto:michel@whitehorses.nl"
                                                                                           class="cyan">Email</a>
 </div>
 </td>
