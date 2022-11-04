@@ -1,6 +1,10 @@
 <!DOCTYPE HTML>
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
+    <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+    <link rel="manifest" href="/site.webmanifest">
     <title>Rave NOW!</title>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
 </head>
@@ -9,8 +13,13 @@
 <h1>Welkom!</h1>
 <h1>Form</h1>
 <form th:action="@{/gabber/zoek-rave}" method="post" th:object="${searchRave}">
-    <input id="distance" placeholder="Afstand" required type="number" th:field="*{distance}"/>
+    <input id="distance" placeholder="Afstand" required type="number" value="50" th:field="*{distance}"/>
+    <span>Afstand in KM om op te zoeken</span>
+    <br>
+    <input id="tags" placeholder="Tags om op te zoeken, gescheiden met comma." th:field="*{tags}" type="text"/>
+    <span>Tags om op te zoeken</span>
     <input id="currentLocation" th:field="*{currentLocation}" type="hidden"/>
+    <br>
     <input type="submit" value="Zoek">
 </form>
 <p th:insert="fragments/head :: raves"></p>
