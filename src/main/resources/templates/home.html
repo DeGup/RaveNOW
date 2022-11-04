@@ -1,13 +1,6 @@
 <!DOCTYPE HTML>
 <html xmlns:th="http://www.thymeleaf.org">
-<head>
-    <link rel="apple-touch-icon" sizes="180x180" th:href="@{/apple-touch-icon.png}">
-    <link rel="stylesheet" th:href="@{/teletekst.css}">
-    <link rel="icon" type="image/png" sizes="32x32" th:href="@{/favicon-32x32.png}">
-    <link rel="icon" type="image/png" sizes="16x16" th:href="@{/favicon-16x16.png}">
-    <link rel="manifest" href="/site.webmanifest">
-    <title>Rave NOW!</title>
-    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<head th:insert="fragments/head :: head">
 	<link rel="stylesheet" href="teletekst.css">
 </head>
 <script type="text/javascript" language="JavaScript">

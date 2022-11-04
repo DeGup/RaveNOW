@@ -1,5 +1,17 @@
 <!DOCTYPE HTML>
 <html xmlns:th="http://www.thymeleaf.org">
+<head th:fragment="head">
+    <link rel="apple-touch-icon" sizes="180x180" th:href="@{/apple-touch-icon.png}">
+    <link rel="stylesheet" th:href="@{/teletekst.css}">
+    <link rel="icon" type="image/png" sizes="32x32" th:href="@{/favicon-32x32.png}">
+    <link rel="icon" type="image/png" sizes="16x16" th:href="@{/favicon-16x16.png}">
+    <link rel="manifest" href="/site.webmanifest">
+    <script type="text/javascript"
+            src="https://maps.googleapis.com/maps/api/js?key="></script>
+    <script src="https://unpkg.com/location-picker/dist/location-picker.min.js"></script>
+    <title>Rave NOW!</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+</head>
 <body>
 <p th:fragment="raves">
     <tr th:if="${raves.empty}">

@@ -1,28 +1,15 @@
 <!DOCTYPE html>
 <html lang="en">
-<head   >
-    <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
-    <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
-    <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
-    <link rel="manifest" href="/site.webmanifest">
-    <title>Rave NOW!</title>
-    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
-    <script type="text/javascript"
-            src="https://maps.googleapis.com/maps/api/js?key="></script>
-    <script src="https://unpkg.com/location-picker/dist/location-picker.min.js"></script>
-    <style type="text/css">
-        #map {
-            width: 100%;
-            height: 480px;
-        }
-    </style>
+<head th:insert="fragments/head :: head"></head>
 <body>
 <a th:insert="fragments/head :: navbar"></a>
 <form th:action="@{/organisatie/create-rave}" method="post" th:object="${rave}">
     <span><input id="naam" placeholder="Naam" required type="text" th:field="*{name}"/></span>
-    <input id="tags" placeholder="Tags" required type="text" th:field="*{tags}"/>
-    <input id="omschrijving" placeholder="omschrijving" required type="text" th:field="*{omschrijving}"/>
     <input id="datum" placeholder="datum" required type="datetime-local" th:field="*{datum}"/>
+    <br>
+    <input id="omschrijving" placeholder="omschrijving" required type="text" th:field="*{omschrijving}"/>
+    <br>
+    <input id="tags" placeholder="Tags" required type="text" size="" th:field="*{tags}"/>
     <input id="latitude" required type="hidden" th:field="*{latitude}"/>
     <input id="longitude" required type="hidden" th:field="*{longitude}"/>
     <input type="submit" value="Opslaan">
@@ -30,16 +17,10 @@
 
 <div id="map"></div>
 <br>
-<button id="confirmPosition">Confirm Position</button>
-<br>
-<p>On click position: <span id="onClickPositionView"></span></p>
 <p th:insert="fragments/head :: raves"></p>
 </body>
 <script>
     // Get element references
-    var confirmBtn = document.getElementById('confirmPosition');
-    var onClickPositionView = document.getElementById('onClickPositionView');
-
     // Initialize locationPicker plugin
     var lp = new locationPicker('map', {
         setCurrentPosition: true, // You can omit this, defaults to true
@@ -48,16 +29,16 @@
     });
 
     // Listen to button onclick event
-    confirmBtn.onclick = function () {
-        // Get current location and show it in HTML
-        const location = lp.getMarkerPosition();
-        const long = document.getElementById("longitude");
-        const lat = document.getElementById("latitude");
-
-        onClickPositionView.innerHTML = 'De gekozen locatie is ' + location.lat + ',' + location.lng;
-        long.value = location.lng;
-        lat.value = location.lat;
-    };
+    // confirmBtn.onclick = function () {
+    //     // Get current location and show it in HTML
+    //     const location = lp.getMarkerPosition();
+    //     const long = document.getElementById("longitude");
+    //     const lat = document.getElementById("latitude");
+    //
+    //     onClickPositionView.innerHTML = 'De gekozen locatie is ' + location.lat + ',' + location.lng;
+    //     long.value = location.lng;
+    //     lat.value = location.lat;
+    // };
 
     google.maps.event.addListener(lp.map, 'idle', function (event) {
         // Get current location and show it in HTML
