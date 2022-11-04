@@ -1,5 +1,6 @@
 package nl.whitehorses.ravenow.controller.gabber;
 
+import antlr.StringUtils;
 import lombok.RequiredArgsConstructor;
 import nl.whitehorses.ravenow.model.SearchRave;
 import nl.whitehorses.ravenow.repositories.RaveRepo;
@@ -20,7 +21,8 @@ public class GabberController {
     public ModelAndView findRave(@ModelAttribute("searchRave") SearchRave modelAndView) {
         var raves = raveRepo.findAll();
         var geoData = Arrays.stream(modelAndView.getCurrentLocation().trim().split(";")).toList();
-        var zoekTags = Arrays.stream(modelAndView.getTags().trim().split(",")).toList();
+        var zoekTags = Arrays.stream(modelAndView.getTags().trim().split(",")).filter(s -> !s.isEmpty()).toList();
+
         if (geoData.size() < 2 && zoekTags.isEmpty()) {
             return new ModelAndView("gabbers/gabber-home", "raves", raves);
         }
@@ -31,6 +33,10 @@ public class GabberController {
         var distanceFiltered = raves.stream()
                 .filter(r -> distance > distance(Double.valueOf(searchLat), Double.valueOf(searchLong), Double.valueOf(r.getLatitude()), Double.valueOf(r.getLongitude())))
                 .toList();
+
+        if (zoekTags.isEmpty()) {
+            return new ModelAndView("gabbers/gabber-home", "raves", distanceFiltered);
+        }
 
         var filtered = distanceFiltered.stream().dropWhile(r ->
                 Arrays.stream(r.getTags().split(",")).noneMatch(zoekTags::contains)).toList();
