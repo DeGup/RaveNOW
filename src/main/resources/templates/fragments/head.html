@@ -51,8 +51,9 @@
 &#xE2C0;<span th:if="${raves.empty}">
 &#xE2C0;<span class="red">No Raves found! :(</span></span>
 &#xE2C0;<span th:each="rave : ${raves}">
-&#xE2C0;<span class="redbg" style="font-size: x-large" th:text="${rave.getName()}"></span><span> | </span><span class="blue" th:text="${rave.getDatum()}"> Datum </span>
+&#xE2C0;<span class="redbg" style="font-size: x-large" th:text="${rave.getName()}"></span><span> | </span><span class="blue" th:text="${#temporals.format(rave.getDatum(), 'dd-MM-yyyy HH:mm')}"> Datum </span>
 &#xE2C0;<span class="white" th:text="${rave.getOmschrijving()}"></span>
+&#xE2C0;<span class="white" th:text="${#numbers.formatInteger(rave.getDistance(),0)}"></span><span> km to destination </span>
 &#xE2C0;<span class="blackbg" style="font-size: small" th:text="${rave.getTags()}"></span>
 &#xE2C0;</span>
 &#xE2C0;</span>

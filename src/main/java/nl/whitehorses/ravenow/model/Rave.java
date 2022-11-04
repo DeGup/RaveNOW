@@ -8,6 +8,7 @@ import org.springframework.format.annotation.DateTimeFormat;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
+import javax.persistence.Transient;
 import java.time.LocalDateTime;
 
 @Entity
@@ -23,4 +24,6 @@ public class Rave {
     private String omschrijving;
     @DateTimeFormat(pattern = "yyyy-MM-dd'T'HH:mm")
     private LocalDateTime datum;
+    @Transient
+    private Double distance;
 }

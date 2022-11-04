@@ -11,6 +11,7 @@ import org.springframework.web.servlet.ModelAndView;
 
 import javax.annotation.PostConstruct;
 import java.time.LocalDateTime;
+import java.time.temporal.ChronoUnit;
 import java.util.Map;
 
 @Controller
@@ -21,30 +22,39 @@ public class RaveController {
     @PostConstruct
     private void defaults() {
         var boom = new Rave();
+        boom.setName("Boom festival");
         boom.setTags("boom,portugal,psytrance");
         boom.setOmschrijving("Psy-Trance in Portugal!");
-        boom.setName("Boom festival");
         boom.setLatitude("39.916667");
         boom.setLongitude("-7.233333");
-        boom.setDatum(LocalDateTime.of(1992, 7, 20, 15, 0));
+        boom.setDatum(LocalDateTime.of(2023, 7, 20, 15, 0));
         raveRepo.save(boom);
 
         var pepfest = new Rave();
+        pepfest.setName("PEPfest");
         pepfest.setTags("nijmegen,hardstyle");
         pepfest.setOmschrijving("");
-        pepfest.setName("PEPfest");
         pepfest.setLatitude("51.812565");
         pepfest.setLongitude("5.837226");
-        pepfest.setDatum(LocalDateTime.of(1990, 11, 4, 23, 0));
+        pepfest.setDatum(LocalDateTime.now());
         raveRepo.save(pepfest);
 
+        var fout = new Rave();
+        fout.setName("Fout XXL");
+        fout.setTags("fout,hardstyle,utrecht");
+        fout.setOmschrijving("Lekker fout!");
+        fout.setLatitude("52.091680");
+        fout.setLongitude("5.120360");
+        fout.setDatum(LocalDateTime.now());
+        raveRepo.save(fout);
+
         var harder = new Rave();
+        harder.setName("Harder is Beter");
         harder.setTags("arnhem,hardstyle,hardcore");
         harder.setOmschrijving("Bullet Proof Hardcore");
-        harder.setName("Harder is Beter");
         harder.setLatitude("51.985104");
         harder.setLongitude("5.898730");
-        harder.setDatum(LocalDateTime.of(1990, 11, 18, 23, 0));
+        harder.setDatum(LocalDateTime.now().plus(1, ChronoUnit.DAYS));
         raveRepo.save(harder);
     }
 

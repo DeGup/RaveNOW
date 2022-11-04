@@ -3,14 +3,19 @@ package nl.whitehorses.ravenow.controller.gabber;
 import antlr.StringUtils;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
+import nl.whitehorses.ravenow.model.Rave;
 import nl.whitehorses.ravenow.model.SearchRave;
 import nl.whitehorses.ravenow.repositories.RaveRepo;
+import org.springframework.boot.autoconfigure.amqp.RabbitConnectionFactoryBeanConfigurer;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.servlet.ModelAndView;
 
+import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Comparator;
+import java.util.List;
 
 @Controller
 @RequiredArgsConstructor
@@ -38,20 +43,26 @@ public class GabberController {
             searchLong = "5.120360";
         }
 
+        List<Rave> toReturn = new ArrayList<Rave>();
+
         var distance = searchRave.getDistance() == 0 ? Integer.MAX_VALUE : searchRave.getDistance();
         var distanceFiltered = raves.stream()
                 .filter(r -> r.getLatitude() != null && r.getLongitude() != null)
                 .filter(r -> distance > distance(Double.valueOf(searchLat), Double.valueOf(searchLong), Double.valueOf(r.getLatitude()), Double.valueOf(r.getLongitude())))
                 .toList();
 
-        if (zoekTags.isEmpty()) {
-            return new ModelAndView("gabbers/gabber-home", "raves", distanceFiltered);
+        if (!zoekTags.isEmpty()) {
+            toReturn = distanceFiltered.stream().filter(r -> Arrays.stream(r.getTags().trim().split(",")).anyMatch(zoekTags::contains)
+            ).toList();
+        } else {
+            toReturn = distanceFiltered;
         }
 
-        var filtered = distanceFiltered.stream().filter(r -> Arrays.stream(r.getTags().trim().split(",")).anyMatch(zoekTags::contains)
-        ).toList();
-
-        return new ModelAndView("gabbers/gabber-home", "raves", filtered);
+        var sorted = toReturn.stream().peek(r -> r.setDistance(distance(Double.valueOf(searchLat), Double.valueOf(searchLong), Double.valueOf(r.getLatitude()), Double.valueOf(r.getLongitude()))))
+                .sorted(Comparator.comparing(Rave::getDistance))
+                .sorted(Comparator.comparing(Rave::getDatum))
+                .toList();
+        return new ModelAndView("gabbers/gabber-home", "raves", sorted);
     }
 
     private double distance(Double searchLat, Double searchLong, Double raveLat,
