@@ -4,15 +4,15 @@
 <body>
 <a th:insert="fragments/head :: navbar"></a>
 <form th:action="@{/organisatie/create-rave}" method="post" th:object="${rave}">
-    <span><input id="naam" placeholder="Naam" required type="text" th:field="*{name}"/></span>
+    <span><input id="naam" class="blue" size="12" placeholder="Naam" required type="text" th:field="*{name}"/></span>
     <input id="datum" placeholder="datum" required type="datetime-local" th:field="*{datum}"/>
     <br>
-    <input id="omschrijving" placeholder="omschrijving" required type="text" th:field="*{omschrijving}"/>
+    <input id="omschrijving" class="blue" size="12" placeholder="omschrijving" required type="text" th:field="*{omschrijving}"/>
     <br>
-    <input id="tags" placeholder="Tags" required type="text" size="" th:field="*{tags}"/>
+    <input id="tags" placeholder="Tags" class="blue" required type="text" th:field="*{tags}"/>
     <input id="latitude" required type="hidden" th:field="*{latitude}"/>
     <input id="longitude" required type="hidden" th:field="*{longitude}"/>
-    <input type="submit" value="Opslaan">
+    <input type="submit" value="Opslaan" class="teletext.yellow bluebg">
 </form>
 
 <div id="map"></div>

@@ -8,6 +8,8 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.servlet.ModelAndView;
 
+import java.util.Arrays;
+
 @Controller
 @RequiredArgsConstructor
 public class GabberController {
@@ -17,22 +19,28 @@ public class GabberController {
     @PostMapping("/gabber/zoek-rave")
     public ModelAndView findRave(@ModelAttribute("searchRave") SearchRave modelAndView) {
         var raves = raveRepo.findAll();
-        String[] geoData = modelAndView.getCurrentLocation().split(";");
-        if (geoData.length < 2) {
+        var geoData = Arrays.stream(modelAndView.getCurrentLocation().trim().split(";")).toList();
+        var zoekTags = Arrays.stream(modelAndView.getTags().trim().split(",")).toList();
+        if (geoData.size() < 2 && zoekTags.isEmpty()) {
             return new ModelAndView("gabbers/gabber-home", "raves", raves);
-        } else {
-            var searchLat = geoData[0];
-            var searchLong = geoData[1];
-            var distance = modelAndView.getDistance() == 0 ? Integer.MAX_VALUE : modelAndView.getDistance();
-            var filtered = raves.stream()
-                    .filter(r -> distance > distance(Double.valueOf(searchLat), Double.valueOf(searchLong), Double.valueOf(r.getLatitude()), Double.valueOf(r.getLongitude())))
-                    .toList();
-            return new ModelAndView("gabbers/gabber-home", "raves", filtered);
         }
+
+        var searchLat = geoData.get(0);
+        var searchLong = geoData.get(1);
+        var distance = modelAndView.getDistance() == 0 ? Integer.MAX_VALUE : modelAndView.getDistance();
+        var distanceFiltered = raves.stream()
+                .filter(r -> distance > distance(Double.valueOf(searchLat), Double.valueOf(searchLong), Double.valueOf(r.getLatitude()), Double.valueOf(r.getLongitude())))
+                .toList();
+
+        var filtered = distanceFiltered.stream().dropWhile(r ->
+                Arrays.stream(r.getTags().split(",")).noneMatch(zoekTags::contains)).toList();
+
+
+        return new ModelAndView("gabbers/gabber-home", "raves", filtered);
     }
 
     private double distance(Double searchLat, Double searchLong, Double raveLat,
-                           Double raveLong) {
+                            Double raveLong) {
 
         final int R = 6371; // Radius of the earth
         double latDistance = Math.toRadians(raveLat - searchLat);
