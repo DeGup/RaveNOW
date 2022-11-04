@@ -10,6 +10,7 @@ import nl.whitehorses.ravenow.repositories.RaveRepo;
 import nl.whitehorses.ravenow.repositories.UserRepo;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.Mapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.servlet.ModelAndView;
 
@@ -44,6 +45,11 @@ public class HomeController {
     @GetMapping("/")
     public ModelAndView home() {
         return new ModelAndView("home");
+    }
+
+    @GetMapping
+    public ModelAndView error() {
+        return new ModelAndView("error");
     }
 
 

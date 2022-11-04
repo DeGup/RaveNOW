@@ -20,14 +20,11 @@ public class GabberController {
     private final RaveRepo raveRepo;
 
     @PostMapping("/gabber/zoek-rave")
-    public ModelAndView findRave(@ModelAttribute("searchRave") SearchRave modelAndView) {
+    public ModelAndView findRave(@ModelAttribute("searchRave") SearchRave searchRave) {
+        log.info("Zoeken voor {}", searchRave);
         var raves = raveRepo.findAll();
-        var geoData = Arrays.stream(modelAndView.getCurrentLocation().trim().split(";")).toList();
-        var zoekTags = Arrays.stream(modelAndView.getTags().trim().split(",")).filter(s -> !s.isEmpty()).toList();
-
-        if (geoData.size() < 2 && zoekTags.isEmpty()) {
-            return new ModelAndView("gabbers/gabber-home", "raves", raves);
-        }
+        var geoData = Arrays.stream(searchRave.getCurrentLocation().trim().split(";")).toList();
+        var zoekTags = Arrays.stream(searchRave.getTags().trim().split(",")).filter(s -> !s.isEmpty()).toList();
 
         log.info(geoData.toString());
         String searchLat;
@@ -41,7 +38,7 @@ public class GabberController {
             searchLong = "5.120360";
         }
 
-        var distance = modelAndView.getDistance() == 0 ? Integer.MAX_VALUE : modelAndView.getDistance();
+        var distance = searchRave.getDistance() == 0 ? Integer.MAX_VALUE : searchRave.getDistance();
         var distanceFiltered = raves.stream()
                 .filter(r -> r.getLatitude() != null && r.getLongitude() != null)
                 .filter(r -> distance > distance(Double.valueOf(searchLat), Double.valueOf(searchLong), Double.valueOf(r.getLatitude()), Double.valueOf(r.getLongitude())))

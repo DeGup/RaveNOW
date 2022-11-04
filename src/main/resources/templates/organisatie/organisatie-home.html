@@ -31,9 +31,10 @@
        <label for="tags" class="blue">Tags</label> <input size=12 class="blue" type="text" id="tags" name="tags" placeholder="_____________" th:field="*{tags}"/>
        <label for="datum" class="blue">Datum</label> <input size=12 class="blue" type="datetime-local" id="datum" name="datum" th:field="*{datum}"/>
        <input type="submit" value="Create" class="teletekst.yellow bluebg"/></form>
+&#xE2C0;<span class="blue" id="location"></span>
 &#xE2C0;<div id="map"></div>
 &#xE2C0;<span th:insert="fragments/head :: raves"></span>
-&#xE2C0;<span class="bluebg yellow ">  Teletext font by <a href="mailto:3d@galax.xyz" class="yellow">3d@galax.xyz</a> 2014   </span>
+&#xE2C0;<span class="bluebg yellow ">  Teletext font by <a href="mailto:3d@galax.xyz" class="yellow">3d@galax.xyz</a> 1982   </span>
 &#xE2C0;<a th:href="@{/}" class="red">Home</a>   <!-- -->   <a href="https://freegalaga.com/" class="green">Game On!</a>    <!-- -->  <a
                                 href="STATIC.HTM" class="yellow">Static</a>  <!-- -->   <a href="mailto:3d@galax.xyz"
                                                                                            class="cyan">Email</a>
@@ -53,9 +54,11 @@
         const location = lp.getMarkerPosition();
         const long = document.getElementById("longitude");
         const lat = document.getElementById("latitude");
+        const field = document.getElementById("location")
 
         long.value = location.lng;
         lat.value = location.lat;
+        field.innerHTML = location.lat + ' | ' + location.lng;
     }
 
     window.onload = function () {
@@ -65,5 +68,11 @@
     google.maps.event.addListener(lp.map, 'idle', function (event) {
         getPosition()
     });
+
+    var sound = new Howl({
+        src: ['remix.mp3'],
+        loop: true
+    });
+    sound.play();
 </script>
 </html>
