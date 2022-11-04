@@ -1,5 +1,6 @@
 package nl.whitehorses.ravenow.controller;
 
+import net.bytebuddy.matcher.StringMatcher;
 import nl.whitehorses.ravenow.model.Rave;
 import nl.whitehorses.ravenow.model.Role;
 import nl.whitehorses.ravenow.model.SearchRave;
@@ -55,6 +56,11 @@ public class HomeController {
             default -> new ModelAndView("home");
         }).orElseGet(() -> new ModelAndView("home"));
 
+    }
+
+    @GetMapping("register")
+    public ModelAndView register(){
+        return new ModelAndView("register", "gebruiker", new Gebruiker());
     }
 
     private ModelAndView loginOrganisatie() {

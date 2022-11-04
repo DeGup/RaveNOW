@@ -2,6 +2,7 @@ package nl.whitehorses.ravenow.controller.gabber;
 
 import antlr.StringUtils;
 import lombok.RequiredArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
 import nl.whitehorses.ravenow.model.SearchRave;
 import nl.whitehorses.ravenow.repositories.RaveRepo;
 import org.springframework.stereotype.Controller;
@@ -13,6 +14,7 @@ import java.util.Arrays;
 
 @Controller
 @RequiredArgsConstructor
+@Slf4j
 public class GabberController {
 
     private final RaveRepo raveRepo;
@@ -27,8 +29,18 @@ public class GabberController {
             return new ModelAndView("gabbers/gabber-home", "raves", raves);
         }
 
-        var searchLat = geoData.get(0);
-        var searchLong = geoData.get(1);
+        log.info(geoData.toString());
+        String searchLat;
+        String searchLong;
+
+        if (geoData.size() >= 2) {
+            searchLat = geoData.get(0);
+            searchLong = geoData.get(1);
+        } else {
+            searchLat = "52.091680";
+            searchLong = "5.120360";
+        }
+
         var distance = modelAndView.getDistance() == 0 ? Integer.MAX_VALUE : modelAndView.getDistance();
         var distanceFiltered = raves.stream()
                 .filter(r -> r.getLatitude() != null && r.getLongitude() != null)

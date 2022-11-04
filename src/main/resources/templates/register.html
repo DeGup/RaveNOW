@@ -26,10 +26,12 @@
 &#xE2C0; <span class="red">Where's The Rave At Now?</span>
 &#xE2C0;
 &#xE2C0;Wouldn't you like to know?
-&#xE2C0; <span class="yellow">You could try to <span class="flashing">log on!</span>&#xE2C0;<form action="login" method="post">
-       <label for="username" class="blue">Username</label> <input size=12 class="blue" type="text" id="username" name="username" placeholder="_ _ _ _ _ _ _ _"/> <span class="teletekst.yellow bluebg"><a th:href="@{/register}" class="yellow">Register</a></span>
-       <label for="password" class="blue">Password</label> <input size=12 class="blue" type="password" id="password" name="password" placeholder="_____________"/>  <input type="submit" value="Log in" class="teletekst.yellow bluebg"/></form>
-&#xE2C0;
+&#xE2C0; <span class="yellow">You could try to <span class="flashing">log on!</span>&#xE2C0;<form th:action="@{/user}" method="post" th:object="${gebruiker}" >
+       <label for="username" class="blue">Username</label> <input size=12 class="blue" type="text" id="username" name="username" placeholder="_ _ _ _ _ _ _ _"/>
+       <label for="tags" class="blue">Preferences</label> <input size=12 class="blue" type="text" id="tags" name="tags" placeholder="_ _ _ _ _ _ _ _"/>
+       <label class="blue">Role<select name="role"><option class="redbg" th:each="role : ${T(nl.whitehorses.ravenow.model.Role).values()}" th:value="${role}" th:text="${role}"></option></select></label>
+       <label for="password" class="blue">Password</label> <input size=12 class="blue" type="password" id="password" name="password" placeholder="_____________"/>  <input type="submit" value="Registreer" class="teletekst.yellow bluebg"/></form>
+                        &#xE2C0;
 &#xE2C0;<span class="bluebg yellow ">  Teletext font by <a href="mailto:3d@galax.xyz" class="yellow">3d@galax.xyz</a> 2014   </span>
 &#xE2C0;  <a th:href="@{/}" class="red">Home</a>   <!-- -->   <a href="https://freegalaga.com/" class="green">Game On!</a>    <!-- -->  <a
                                 href="STATIC.HTM" class="yellow">Static</a>  <!-- -->   <a href="mailto:3d@galax.xyz"
