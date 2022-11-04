@@ -39,9 +39,8 @@ public class GabberController {
             return new ModelAndView("gabbers/gabber-home", "raves", distanceFiltered);
         }
 
-        var filtered = distanceFiltered.stream().dropWhile(r ->
-                Arrays.stream(r.getTags().split(",")).noneMatch(zoekTags::contains)).toList();
-
+        var filtered = distanceFiltered.stream().filter(r -> Arrays.stream(r.getTags().trim().split(",")).anyMatch(zoekTags::contains)
+        ).toList();
 
         return new ModelAndView("gabbers/gabber-home", "raves", filtered);
     }

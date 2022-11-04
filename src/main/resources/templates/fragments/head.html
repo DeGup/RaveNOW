@@ -46,29 +46,14 @@
     </script>
 </head>
 <body>
-<p th:fragment="raves">
-    <tr th:if="${raves.empty}">
-        <td colspan="2"> Geen Raves gevonden :(</td>
-    </tr>
-    <tr th:each="rave : ${raves}">
-        <td><span th:text="${rave.getName()}"> Naam </span></td>
-        <td><span> | </span></td>
-        <td><span th:text="${rave.getDatum()}"> Datum </span></td>
-        <br/>
-        <td><span th:text="${rave.getOmschrijving()}"> Omschrijving </span></td>
-        <br/>
-        <td><span th:text="${rave.getTags()}"> Tags </span></td>
-        <br/>
-    </tr>
-</p>
-<nav th:fragment="navbar" class="navbar navbar-expand-md bg-dark navbar-dark">
-    <h1>Rave NOW!</h1>
-    <div class="container-fluid">
-        <ul class="nav navbar-nav">
-            <li><a class="nav-link" th:href="@{/}">Home</a></li>
-            <li><a class="nav-link" th:href="@{/}">Log out</a></li>
-        </ul>
-    </div>
-</nav>
+&#xE2C0;<span th:fragment="raves">
+&#xE2C0;<span th:if="${raves.empty}">
+&#xE2C0;<span class="red">No Raves found! :(</span></span>
+&#xE2C0;<span th:each="rave : ${raves}">
+&#xE2C0;<span class="redbg" style="font-size: x-large" th:text="${rave.getName()}"></span><span> | </span><span class="blue" th:text="${rave.getDatum()}"> Datum </span>
+&#xE2C0;<span class="white" th:text="${rave.getOmschrijving()}"></span>
+&#xE2C0;<span class="blackbg" style="font-size: small" th:text="${rave.getTags()}"></span>
+&#xE2C0;</span>
+&#xE2C0;</span>
 </body>
 </html>

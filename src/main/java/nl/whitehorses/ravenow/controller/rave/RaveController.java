@@ -21,15 +21,31 @@ public class RaveController {
     @PostConstruct
     private void defaults() {
         var boom = new Rave();
-        boom.setTags("boom");
-        boom.setOmschrijving("""
-                A truly psychedelic global gathering of music, arts, culture & hands-on sustainability
-                '""");
+        boom.setTags("boom,portugal,psytrance");
+        boom.setOmschrijving("Psy-Trance in Portugal!");
         boom.setName("Boom festival");
         boom.setLatitude("39.916667");
         boom.setLongitude("-7.233333");
-        boom.setDatum(LocalDateTime.of(2023, 7, 20, 15, 0));
+        boom.setDatum(LocalDateTime.of(1992, 7, 20, 15, 0));
         raveRepo.save(boom);
+
+        var pepfest = new Rave();
+        pepfest.setTags("nijmegen,hardstyle");
+        pepfest.setOmschrijving("");
+        pepfest.setName("PEPfest");
+        pepfest.setLatitude("51.812565");
+        pepfest.setLongitude("5.837226");
+        pepfest.setDatum(LocalDateTime.of(1990, 11, 4, 23, 0));
+        raveRepo.save(pepfest);
+
+        var harder = new Rave();
+        harder.setTags("arnhem,hardstyle,hardcore");
+        harder.setOmschrijving("Bullet Proof Hardcore");
+        harder.setName("Harder is Beter");
+        harder.setLatitude("51.985104");
+        harder.setLongitude("5.898730");
+        harder.setDatum(LocalDateTime.of(1990, 11, 18, 23, 0));
+        raveRepo.save(harder);
     }
 
     @PostMapping("/organisatie/create-rave")

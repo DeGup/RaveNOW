@@ -1,24 +1,3 @@
-<!--<!DOCTYPE html>-->
-<!--<html lang="en">-->
-<!--<head th:insert="fragments/head :: head"></head>-->
-<!--<body>-->
-<!--<a th:insert="fragments/head :: navbar"></a>-->
-<!--<form th:action="@{/organisatie/create-rave}" method="post" th:object="${rave}">-->
-<!--    <span><input id="naam" class="blue" size="12" placeholder="Naam" required type="text" th:field="*{name}"/></span>-->
-<!--    <input id="datum" placeholder="datum" required type="datetime-local" th:field="*{datum}"/>-->
-<!--    <br>-->
-<!--    <input id="omschrijving" class="blue" size="12" placeholder="omschrijving" required type="text" th:field="*{omschrijving}"/>-->
-<!--    <br>-->
-<!--    <input id="tags" placeholder="Tags" class="blue" required type="text" th:field="*{tags}"/>-->
-
-<!--    <input type="submit" value="Opslaan" class="teletext.yellow bluebg">-->
-<!--</form>-->
-
-<!--<div id="map"></div>-->
-<!--<br>-->
-<!--</body>-->
-
-<!--</html>-->
 <!DOCTYPE HTML>
 <html xmlns:th="http://www.thymeleaf.org">
 <head th:insert="fragments/head :: head">
@@ -28,11 +7,11 @@
     <table>
         <tr>
             <td class="teletext">
-                <div class="teletext">&#xE2C0;P100 <span class="green">!RAVE.NOW <span id="TTcounter">100</span> <span id="TTdate">Mon  1 Jan</span></span> <span class="yellow"><span id="TTtime">00:00/00</span></span>
-&#xE2C0;<span class="yellow bluebg"> Amazing raves near you?            </span><span
-        class="white bluebg">100</span>
-&#xE2C0;<span class="yellow bluebg"> Last raves sold out completely     </span><span
-        class="white bluebg">201</span>
+                <div class="teletext">&#xE2C0;P100 <span class="green">!RAVE.NOW <span id="TTcounter">888</span> <span id="TTdate">Mon  1 Jan</span></span> <span class="yellow"><span id="TTtime">00:00/00</span></span>
+&#xE2C0;<span class="yellow bluebg"> Never gonna give you up            </span><span
+        class="white bluebg">429</span>
+&#xE2C0;<span class="yellow bluebg"> You can't handle the truth!        </span><span
+        class="white bluebg">666</span>
 &#xE2C0;
 &#xE2C0;<span class="red">&#xE2C0;&#xE2C0;&#xE2C0;&#xE2E0;&#xE2FF;&#xE2FF;&#xE2FF;&#xE2FF;&#xE2FF;&#xE2FF;&#xE2FF;&#xE2FF;&#xE2FF;&#xE2FF;&#xE2FF;&#xE2FF;&#xE2FF;&#xE2FF;&#xE2FF;&#xE2FF;&#xE2FF;&#xE2FF;&#xE2FF;&#xE2FF;&#xE2FF;&#xE2FF;&#xE2FF;&#xE2FF;&#xE2FF;&#xE2FF;&#xE2FF;&#xE2FF;&#xE2FF;&#xE2FF;&#xE2FF;&#xE2FF;&#xE2FF;&#xE2DF;&#xE2C1;</span>
 &#xE2C0;<span class="magenta">&#xE2C0;&#xE2C0;&#xE2C0;&#xE2FA;&#xE2FF;&#xE2C5;&#xE2C0;&#xE2C0;&#xE2C0;&#xE2C0;&#xE2C0;&#xE2C0;&#xE2C0;&#xE2C0;&#xE2C0;&#xE2C0;&#xE2C0;&#xE2C0;&#xE2C0;&#xE2C0;&#xE2C0;&#xE2C0;&#xE2C0;&#xE2C0;&#xE2C0;&#xE2C0;&#xE2C0;&#xE2C0;&#xE2C0;&#xE2C0;&#xE2C0;&#xE2C0;&#xE2C0;&#xE2E0;&#xE2FE;&#xE2FF;&#xE2C7;&#xE2C0;&#xE2C0;</span>
@@ -53,16 +32,15 @@
        <label for="datum" class="blue">Datum</label> <input size=12 class="blue" type="datetime-local" id="datum" name="datum" th:field="*{datum}"/>
        <input type="submit" value="Create" class="teletekst.yellow bluebg"/></form>
 &#xE2C0;<div id="map"></div>
-&#xE2C0;
+&#xE2C0;<span th:insert="fragments/head :: raves"></span>
 &#xE2C0;<span class="bluebg yellow ">  Teletext font by <a href="mailto:3d@galax.xyz" class="yellow">3d@galax.xyz</a> 2014   </span>
-&#xE2C0;  <a th:href="@{/}" class="red">Home</a>   <!-- -->   <a href="https://freegalaga.com/" class="green">Game On!</a>    <!-- -->  <a
+&#xE2C0;<a th:href="@{/}" class="red">Home</a>   <!-- -->   <a href="https://freegalaga.com/" class="green">Game On!</a>    <!-- -->  <a
                                 href="STATIC.HTM" class="yellow">Static</a>  <!-- -->   <a href="mailto:3d@galax.xyz"
                                                                                            class="cyan">Email</a>
 </div>
 </td>
 </tr>
 </table>
-    <p th:insert="fragments/head :: raves"></p>
 </body>
 <script>
     var lp = new locationPicker('map', {

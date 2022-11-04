@@ -8,11 +8,11 @@
     <table>
         <tr>
             <td class="teletext">
-                <div class="teletext">&#xE2C0;P100 <span class="green">!RAVE.NOW <span id="TTcounter">100</span> <span id="TTdate">Mon  1 Jan</span></span> <span class="yellow"><span id="TTtime">00:00/00</span></span>
-&#xE2C0;<span class="yellow bluebg"> Amazing raves near you?            </span><span
-        class="white bluebg">100</span>
-&#xE2C0;<span class="yellow bluebg"> Last raves sold out completely     </span><span
-        class="white bluebg">201</span>
+                <div class="teletext">&#xE2C0;P100 <span class="green">!RAVE.NOW <span id="TTcounter">700</span> <span id="TTdate">Mon  1 Jan</span></span> <span class="yellow"><span id="TTtime">00:00/00</span></span>
+&#xE2C0;<span class="yellow bluebg"> Never stop raving!                 </span><span
+        class="white bluebg">110</span>
+&#xE2C0;<span class="yellow bluebg"> Where is the afterparty?!          </span><span
+        class="white bluebg">222</span>
 &#xE2C0;
 &#xE2C0;<span class="red">&#xE2C0;&#xE2C0;&#xE2C0;&#xE2E0;&#xE2FF;&#xE2FF;&#xE2FF;&#xE2FF;&#xE2FF;&#xE2FF;&#xE2FF;&#xE2FF;&#xE2FF;&#xE2FF;&#xE2FF;&#xE2FF;&#xE2FF;&#xE2FF;&#xE2FF;&#xE2FF;&#xE2FF;&#xE2FF;&#xE2FF;&#xE2FF;&#xE2FF;&#xE2FF;&#xE2FF;&#xE2FF;&#xE2FF;&#xE2FF;&#xE2FF;&#xE2FF;&#xE2FF;&#xE2FF;&#xE2FF;&#xE2FF;&#xE2FF;&#xE2DF;&#xE2C1;</span>
 &#xE2C0;<span class="magenta">&#xE2C0;&#xE2C0;&#xE2C0;&#xE2FA;&#xE2FF;&#xE2C5;&#xE2C0;&#xE2C0;&#xE2C0;&#xE2C0;&#xE2C0;&#xE2C0;&#xE2C0;&#xE2C0;&#xE2C0;&#xE2C0;&#xE2C0;&#xE2C0;&#xE2C0;&#xE2C0;&#xE2C0;&#xE2C0;&#xE2C0;&#xE2C0;&#xE2C0;&#xE2C0;&#xE2C0;&#xE2C0;&#xE2C0;&#xE2C0;&#xE2C0;&#xE2C0;&#xE2C0;&#xE2E0;&#xE2FE;&#xE2FF;&#xE2C7;&#xE2C0;&#xE2C0;</span>
@@ -30,15 +30,15 @@
        <label for="distance" class="blue">Distance in KM</label> <input size=12 class="blue" type="text" id="distance" name="distance" placeholder="_____________" th:field="*{distance}"/> <input id="currentLocation" th:field="*{currentLocation}" type="hidden"/>
        <label for="tags" class="blue">Search Tags</label> <input size=12 class="blue" type="text" id="tags" name="tags" placeholder="_____________" th:field="*{tags}"/>  <input type="submit" value="Zoek" class="teletekst.yellow bluebg"/></form>
 &#xE2C0;
+&#xE2C0;<span th:insert="fragments/head :: raves"></span>
 &#xE2C0;<span class="bluebg yellow ">  Teletext font by <a href="mailto:3d@galax.xyz" class="yellow">3d@galax.xyz</a> 2014   </span>
-&#xE2C0;  <a th:href="@{/}" class="red">Home</a>   <!-- -->   <a href="https://freegalaga.com/" class="green">Game On!</a>    <!-- -->  <a
+&#xE2C0;<a th:href="@{/}" class="red">Home</a>   <!-- -->   <a href="https://freegalaga.com/" class="green">Game On!</a>    <!-- -->  <a
                                 href="STATIC.HTM" class="yellow">Static</a>  <!-- -->   <a href="mailto:3d@galax.xyz"
                                                                                            class="cyan">Email</a>
 </div>
 </td>
 </tr>
 </table>
-<p th:insert="fragments/head :: raves"></p>
 </body>
 </html>
 <script>
