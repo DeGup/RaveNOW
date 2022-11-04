@@ -1,0 +1,29 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+<body>
+<p th:fragment="raves">
+    <tr th:if="${raves.empty}">
+        <td colspan="2"> Geen Raves gevonden :(</td>
+    </tr>
+    <tr th:each="rave : ${raves}">
+        <td><span th:text="${rave.getName()}"> Naam </span></td>
+        <td><span> | </span></td>
+        <td><span th:text="${rave.getDatum()}"> Datum </span></td>
+        <br/>
+        <td><span th:text="${rave.getOmschrijving()}"> Omschrijving </span></td>
+        <br/>
+        <td><span th:text="${rave.getTags()}"> Tags </span></td>
+        <br/>
+    </tr>
+</p>
+<nav th:fragment="navbar" class="navbar navbar-expand-md bg-dark navbar-dark">
+    <h1>Rave NOW!</h1>
+    <div class="container-fluid">
+        <ul class="nav navbar-nav">
+            <li><a class="nav-link" th:href="@{/}">Home</a></li>
+            <li><a class="nav-link" th:href="@{/}">Log out</a></li>
+        </ul>
+    </div>
+</nav>
+</body>
+</html>

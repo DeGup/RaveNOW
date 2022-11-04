@@ -1,0 +1,33 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Rave NOW!</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+</head>
+<body>
+<a th:insert="fragments/head :: navbar"></a>
+<h1>Welkom!</h1>
+<h1>Form</h1>
+<form th:action="@{/gabber/zoek-rave}" method="post" th:object="${searchRave}">
+    <input id="distance" placeholder="Afstand" required type="number" th:field="*{distance}"/>
+    <input id="currentLocation" th:field="*{currentLocation}" type="hidden"/>
+    <input type="submit" value="Zoek">
+</form>
+<p th:insert="fragments/head :: raves"></p>
+</body>
+<script>
+    const currentLocation = document.getElementById("currentLocation");
+    window.onload = function getLocation() {
+        if (navigator.geolocation) {
+            navigator.geolocation.getCurrentPosition(showPosition);
+        } else {
+            currentLocation.value = "Geolocation is not supported by this browser.";
+        }
+    }
+
+    function showPosition(position) {
+        currentLocation.value = position.coords.latitude +
+            ";" + position.coords.longitude;
+    }
+</script>
+</html>

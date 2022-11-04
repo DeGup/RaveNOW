@@ -1,0 +1,14 @@
+spring:
+  data:
+    jpa:
+      repositories:
+        enabled: true
+  jpa:
+    hibernate:
+      ddl-auto: create
+
+  h2:
+    console:
+      enabled: true
+server:
+  port: 8081
